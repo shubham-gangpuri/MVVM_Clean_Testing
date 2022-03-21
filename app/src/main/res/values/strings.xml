@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Technical Challenge</string>
+    <string name="maker">Maker</string>
+    <string name="model">Model</string>
+    <string name="year">Year</string>
+    <string name="search">Search</string>
+
+    // Errors
+    <string name="error_no_internet">Internet is not available</string>
+    <string name="error_zero_record">No record found</string>
+    <string name="error_generic">Something went wrong.</string>
+    <string name="error_empty_field">Maker, model or year can\'t be empty.</string>
+    <string name="error_maker_length">Maker length should be greater than 1 or less than 40 character.</string>
+    <string name="error_model_length">Model length should be greater than 1 or less than 40 character.</string>
+    <string name="error_year_selection">Year should not be greater than current year.</string>
+
+</resources>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.squareup.moshi:moshi-kotlin:1.9.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.moshi/moshi-kotlin/1.9.2/30a9e86cf80d6f5472408d7bedba8a44344158b4/moshi-kotlin-1.9.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.moshi/moshi-kotlin/1.9.2/70daf8b33490c1f658ba107625a28c221b68c9c3/moshi-kotlin-1.9.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.moshi/moshi-kotlin/1.9.2/ac7d29154a3165878d3edc5d74914fef733660bf/moshi-kotlin-1.9.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
