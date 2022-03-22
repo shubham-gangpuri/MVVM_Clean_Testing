@@ -41,18 +41,6 @@ class SafeApiCallerTest {
         }
     }
 
-//    @Test
-//    fun `when lambda throws HttpException then it should emit the result as GenericError`() {
-//        val errorBody = ResponseBody.create(MediaType.parse("text/json"),"Unexpected parameter")
-//
-//        runBlockingTest {
-//            val result = apiCaller.safeApiCall(dispatcher) {
-//                throw HttpException(Response.error<Any>(422, errorBody))
-//            }
-//            assertEquals(ResultWrapper.GenericError(422, ErrorResponse("Unexpected parameter")), result)
-//        }
-//    }
-
     @Test
     fun `when lambda throws unknown exception then it should emit GenericError`() {
         runBlockingTest {
