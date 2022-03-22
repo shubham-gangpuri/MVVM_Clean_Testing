@@ -2,10 +2,14 @@ package com.example.technical.challenge.presentation.productsList
 
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.example.technical.challenge.data.network.response.productlist.SearchResults
 import com.example.technical.challenge.data.repositories.FakeProductListingRepository
 import com.example.technical.challenge.domain.ProductsListUseCaseImp
+import com.example.technical.challenge.utils.MainCoroutineRule
+import com.example.technical.challenge.utils.getOrAwaitValueTest
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -28,6 +32,9 @@ class ProductsFragmentViewModelTest{
     @get:Rule
     val testInstantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
 
+    @get:Rule
+    var mainCoroutineRule = MainCoroutineRule()
+
     @Before
     fun setup(){
         MockitoAnnotations.initMocks(this)
@@ -36,10 +43,12 @@ class ProductsFragmentViewModelTest{
     }
 
     @Test
-    fun `give server response 200 when fetch should return success`(){
-        viewModel.getProductsList()
-        val value = viewModel.errorFieldString.get()
-        assertThat(value).isEqualTo("Internet is not available")
+    fun `call getProductsList when fetch should return emptyList`(){
+        runBlocking {
+            viewModel.getProductsList()
+            val value = viewModel.productListResponse.getOrAwaitValueTest()
+            assertThat(value).isEqualTo(emptyList<SearchResults>())
+        }
     }
 
 }

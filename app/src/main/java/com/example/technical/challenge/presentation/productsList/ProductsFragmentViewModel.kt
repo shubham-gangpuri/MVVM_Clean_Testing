@@ -64,7 +64,7 @@ class ProductsFragmentViewModel @Inject constructor(
                     _productListResponse.postValue(productListResponse.value.searchResults)
                 }
             }
-            progressVisibility.set(View.GONE)
+        progressVisibility.set(View.GONE)
         }
     }
 }
