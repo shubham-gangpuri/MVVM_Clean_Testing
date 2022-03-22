@@ -1,12 +1,12 @@
 package com.example.technical.challenge.utils
 
+import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import com.example.technical.challenge.TechnicalApplication
 
 fun closeKeyboard(view: View?) {
     view?.let {
@@ -15,7 +15,7 @@ fun closeKeyboard(view: View?) {
     }
 }
 
-fun hasInternetConnection(application: TechnicalApplication): Boolean {
+fun hasInternetConnection(application: Application): Boolean {
     val connectivityManager = application.getSystemService(
         Context.CONNECTIVITY_SERVICE
     ) as ConnectivityManager

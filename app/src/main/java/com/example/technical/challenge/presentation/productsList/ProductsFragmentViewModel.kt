@@ -31,9 +31,10 @@ class ProductsFragmentViewModel @Inject constructor(
     var year = ObservableField("")
     var errorFieldVisibility = ObservableField(View.GONE)
     var errorFieldString = ObservableField<String>()
+    var progressVisibility = ObservableField(View.GONE)
 
     fun getProductsList() {
-        val application = getApplication<TechnicalApplication>()
+        val application = getApplication<Application>()
         if(!hasInternetConnection(application)) {
             errorFieldVisibility.set(View.VISIBLE)
             errorFieldString.set(application.getString(R.string.error_no_internet))
@@ -47,7 +48,7 @@ class ProductsFragmentViewModel @Inject constructor(
             _productListResponse.value = emptyList()
             return
         }
-
+        progressVisibility.set(View.VISIBLE)
         viewModelScope.launch {
             when (val productListResponse = productsListUseCase.run(listOf(maker.get()!!, model.get()!!, year.get()!!))) {
                 is ResultWrapper.NetworkError -> {
@@ -63,6 +64,7 @@ class ProductsFragmentViewModel @Inject constructor(
                     _productListResponse.postValue(productListResponse.value.searchResults)
                 }
             }
+            progressVisibility.set(View.GONE)
         }
     }
 }
