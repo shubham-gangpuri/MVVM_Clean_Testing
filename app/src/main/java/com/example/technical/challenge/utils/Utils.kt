@@ -16,9 +16,13 @@ fun closeKeyboard(view: View?) {
 }
 
 fun hasInternetConnection(application: Application): Boolean {
-    val connectivityManager = application.getSystemService(
+    var connectivityManager = application.getSystemService(
         Context.CONNECTIVITY_SERVICE
-    ) as ConnectivityManager
+    )
+    if(connectivityManager != null)
+        connectivityManager = connectivityManager as ConnectivityManager
+    else
+        return true
     if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         val activeNetwork = connectivityManager.activeNetwork ?: return false
         val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
