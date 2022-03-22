@@ -32,3 +32,9 @@ Dagger-Hilt
 1. Splash Screen, Product List Screen
 2. Search functionality on product list screen
 3. Basic form validation applied.
+
+# Project package structure for main
+
+<img width="388" alt="Screenshot 2022-03-22 at 18 58 25" src="https://user-images.githubusercontent.com/12691162/159555729-ed1a2876-9f25-4326-a7e8-5e3aecfcfe76.png">
+
+
