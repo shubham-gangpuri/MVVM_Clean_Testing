@@ -38,3 +38,7 @@ Dagger-Hilt
 <img width="388" alt="Screenshot 2022-03-22 at 18 58 25" src="https://user-images.githubusercontent.com/12691162/159555729-ed1a2876-9f25-4326-a7e8-5e3aecfcfe76.png">
 <img width="377" alt="Screenshot 2022-03-22 at 19 00 45" src="https://user-images.githubusercontent.com/12691162/159556011-fe978e9d-3f47-43af-8244-f352bbfe2901.png">
 </p>
+
+# Data Flow diagram in MVVM + Clean Architecture
+![MVVM + Clean](https://user-images.githubusercontent.com/12691162/159556895-b186dac0-7f30-499a-831c-1f3fbf7ce220.png)
+
