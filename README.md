@@ -33,8 +33,8 @@ Dagger-Hilt
 2. Search functionality on product list screen
 3. Basic form validation applied.
 
-# Project package structure for main
+# Project package structure for main / test / androidTest
 
 <img width="388" alt="Screenshot 2022-03-22 at 18 58 25" src="https://user-images.githubusercontent.com/12691162/159555729-ed1a2876-9f25-4326-a7e8-5e3aecfcfe76.png">
-
+<img width="377" alt="Screenshot 2022-03-22 at 19 00 45" src="https://user-images.githubusercontent.com/12691162/159556011-fe978e9d-3f47-43af-8244-f352bbfe2901.png">
 
