@@ -11,10 +11,9 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:src="@drawable/gumtree"
-        android:scaleType="centerCrop"
+        android:scaleType="fitEnd"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
