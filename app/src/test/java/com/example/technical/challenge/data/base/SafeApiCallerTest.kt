@@ -1,13 +1,12 @@
 package com.example.technical.challenge.data.base
 
+import com.squareup.moshi.Moshi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.Mockito.mock
 import org.mockito.MockitoAnnotations
 import java.io.IOException
 
@@ -15,13 +14,12 @@ import java.io.IOException
 class SafeApiCallerTest {
 
     private val dispatcher = TestCoroutineDispatcher()
-    @Mock
     private lateinit var apiCaller: SafeApiCaller
 
     @Before
     fun doSetup(){
         MockitoAnnotations.initMocks(this)
-        apiCaller = mock(SafeApiCaller::class.java)
+        apiCaller = SafeApiCaller(Moshi.Builder().build())
     }
 
     @Test

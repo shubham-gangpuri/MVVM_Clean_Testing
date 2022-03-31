@@ -7,7 +7,7 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-open class SafeApiCaller @Inject constructor(private val moshi: Moshi) {
+class SafeApiCaller @Inject constructor(private val moshi: Moshi) {
 
     suspend fun <T> safeApiCall(
         dispatcher: CoroutineDispatcher,
