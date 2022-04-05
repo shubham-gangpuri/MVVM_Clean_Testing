@@ -5,7 +5,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.technical.challenge.R
 import com.example.technical.challenge.data.network.response.productlist.SearchResults
 import com.example.technical.challenge.data.repositories.FakeProductListingRepository
-import com.example.technical.challenge.domain.ProductsListUseCaseImp
+import com.example.technical.challenge.domain.usecase.ProductsListUseCaseImp
 import com.example.technical.challenge.utils.MainCoroutineRule
 import com.example.technical.challenge.utils.getOrAwaitValueTest
 import com.google.common.truth.Truth.assertThat

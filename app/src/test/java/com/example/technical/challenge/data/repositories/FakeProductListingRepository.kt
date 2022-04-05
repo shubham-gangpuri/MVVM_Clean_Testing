@@ -2,7 +2,8 @@ package com.example.technical.challenge.data.repositories
 
 import com.example.technical.challenge.data.base.ResultWrapper
 import com.example.technical.challenge.data.network.response.productlist.ProductListResponse
-import com.example.technical.challenge.domain.ProductListingRepository
+import com.example.technical.challenge.domain.model.network.request.SearchItemsModel
+import com.example.technical.challenge.domain.repositories.ProductListingRepository
 
 class FakeProductListingRepository : ProductListingRepository {
 
@@ -13,9 +14,7 @@ class FakeProductListingRepository : ProductListingRepository {
     }
 
     override suspend fun getProductList(
-        make: String,
-        model: String,
-        year: String
+        searchItemsModel: SearchItemsModel
     ): ResultWrapper<ProductListResponse> {
         return if(shouldReturnNetworkError) {
             ResultWrapper.GenericError(503, null)

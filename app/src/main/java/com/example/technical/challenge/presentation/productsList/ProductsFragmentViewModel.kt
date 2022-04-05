@@ -10,7 +10,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.technical.challenge.R
 import com.example.technical.challenge.data.base.ResultWrapper
 import com.example.technical.challenge.data.network.response.productlist.SearchResults
-import com.example.technical.challenge.domain.ProductsListUseCase
+import com.example.technical.challenge.domain.model.network.request.SearchItemsModel
+import com.example.technical.challenge.domain.usecase.ProductsListUseCase
 import com.example.technical.challenge.utils.hasInternetConnection
 import com.example.technical.challenge.utils.validateSearchInput
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,17 +21,16 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductsFragmentViewModel @Inject constructor(
     application: Application,
-    private val productsListUseCase: ProductsListUseCase) : AndroidViewModel(application){
+    private val productsListUseCase: ProductsListUseCase
+) : AndroidViewModel(application){
 
     private var _productListResponse = MutableLiveData<List<SearchResults>>()
     val productListResponse: LiveData<List<SearchResults>> = _productListResponse
 
-    var maker = ObservableField("")
-    var model = ObservableField("")
-    var year = ObservableField("")
     var errorFieldVisibility = ObservableField(View.GONE)
     var errorFieldString = ObservableField<String>()
     var progressVisibility = ObservableField(View.GONE)
+    var searchItems: SearchItemsModel = SearchItemsModel("","","")
 
     fun getProductsList() {
         val application = getApplication<Application>()
@@ -41,7 +41,7 @@ class ProductsFragmentViewModel @Inject constructor(
         }
 
         // Validate the inputs
-        validateSearchInput(application, maker.get()!!, model.get()!!, year.get()!!)?.let {
+        validateSearchInput(application, searchItems.maker, searchItems.model, searchItems.year)?.let {
             errorFieldVisibility.set(View.VISIBLE)
             errorFieldString.set(it)
             _productListResponse.value = emptyList()
@@ -49,7 +49,7 @@ class ProductsFragmentViewModel @Inject constructor(
         }
         progressVisibility.set(View.VISIBLE)
         viewModelScope.launch {
-            when (val productListResponse = productsListUseCase.run(listOf(maker.get()!!, model.get()!!, year.get()!!))) {
+            when (val productListResponse = productsListUseCase.run(searchItems)) {
                 is ResultWrapper.NetworkError -> {
                     errorFieldVisibility.set(View.VISIBLE)
                     errorFieldString.set(application.getString(R.string.error_zero_record))

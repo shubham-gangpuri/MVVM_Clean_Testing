@@ -6,6 +6,8 @@
     tools:context=".presentation.MainActivity">
 
     <data>
+        <variable name="item"
+            type="com.example.technical.challenge.domain.model.network.request.SearchItemsModel"/>
         <variable
             name="viewModel"
             type="com.example.technical.challenge.presentation.productsList.ProductsFragmentViewModel" />
@@ -22,7 +24,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:hint="@string/maker"
-        android:text="@={viewModel.maker}"
+        android:text="@={item.maker}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -32,7 +34,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_txt_maker"
         android:hint="@string/model"
-        android:text="@={viewModel.model}"
+        android:text="@={item.model}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -42,7 +44,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_txt_model"
         android:hint="@string/year"
-        android:text="@={viewModel.year}"
+        android:text="@={item.year}"
         android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

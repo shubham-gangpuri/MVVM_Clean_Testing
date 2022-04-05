@@ -34,6 +34,7 @@ class ProductsListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[ProductsFragmentViewModel::class.java]
         binding.viewModel = viewModel
+        binding.item = viewModel.searchItems
         binding.rcyViewProductsList.layoutManager = LinearLayoutManager(requireContext())
         binding.rcyViewProductsList.adapter = productItemAdapter
         init()

@@ -2,9 +2,9 @@ package com.example.technical.challenge.di
 
 import com.example.technical.challenge.data.network.NetworkService
 import com.example.technical.challenge.data.repositories.DefaultProductListingRepository
-import com.example.technical.challenge.domain.ProductListingRepository
-import com.example.technical.challenge.domain.ProductsListUseCase
-import com.example.technical.challenge.domain.ProductsListUseCaseImp
+import com.example.technical.challenge.domain.repositories.ProductListingRepository
+import com.example.technical.challenge.domain.usecase.ProductsListUseCase
+import com.example.technical.challenge.domain.usecase.ProductsListUseCaseImp
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.squareup.moshi.Moshi
