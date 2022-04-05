@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.technical.challenge.R
+import com.example.technical.challenge.data.network.response.productlist.SearchResults
 import com.example.technical.challenge.databinding.FragmentProductListBinding
+import com.example.technical.challenge.utils.OnItemClickListener
 import com.example.technical.challenge.utils.closeKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,9 +20,7 @@ class ProductsListFragment : Fragment() {
 
     lateinit var viewModel: ProductsFragmentViewModel
     private lateinit var binding: FragmentProductListBinding
-    private val productItemAdapter by lazy {
-        ProductItemAdapter()
-    }
+    private lateinit var productItemAdapter : ProductItemAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,11 +35,14 @@ class ProductsListFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity())[ProductsFragmentViewModel::class.java]
         binding.viewModel = viewModel
         binding.rcyViewProductsList.layoutManager = LinearLayoutManager(requireContext())
-        binding.rcyViewProductsList.adapter = productItemAdapter
         init()
     }
 
     private fun init() {
+        productItemAdapter = ProductItemAdapter(OnItemClickListener { view, pos ->
+            productItemAdapter.notifyItemChanged(pos, false)
+        })
+        binding.rcyViewProductsList.adapter = productItemAdapter
         viewModel.productListResponse.observe(viewLifecycleOwner) {
             closeKeyboard(binding.root)
             productItemAdapter.productsList = it?:emptyList()

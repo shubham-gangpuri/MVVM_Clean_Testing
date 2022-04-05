@@ -1,0 +1,5 @@
+<resources>
+    // Errors
+    <string name="error_generic">Something went wrong.</string>
+
+</resources>

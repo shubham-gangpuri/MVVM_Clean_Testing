@@ -44,11 +44,7 @@ class ProductsListFragmentTest{
         launchFragmentInHiltContainer<ProductsListFragment> {
             this.viewModel =  testViewModel
         }
-
-        onView(withId(R.id.ed_txt_maker)).perform(replaceText("Nissan"))
-        onView(withId(R.id.ed_txt_model)).perform(replaceText("Juke"))
-        onView(withId(R.id.ed_txt_year)).perform(replaceText("2022"))
-        onView(withId(R.id.btn_search)).perform(
+        onView(withId(R.id.rcy_view_products_list)).perform(
                 click())
         testViewModel.productListResponse.observeForever {
             assertThat(testViewModel.productListResponse.getOrAwaitValue()).isNotEmpty()

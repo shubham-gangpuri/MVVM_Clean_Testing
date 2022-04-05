@@ -12,7 +12,6 @@ import com.example.technical.challenge.data.base.ResultWrapper
 import com.example.technical.challenge.data.network.response.productlist.SearchResults
 import com.example.technical.challenge.domain.ProductsListUseCase
 import com.example.technical.challenge.utils.hasInternetConnection
-import com.example.technical.challenge.utils.validateSearchInput
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,12 +24,13 @@ class ProductsFragmentViewModel @Inject constructor(
     private var _productListResponse = MutableLiveData<List<SearchResults>>()
     val productListResponse: LiveData<List<SearchResults>> = _productListResponse
 
-    var maker = ObservableField("")
-    var model = ObservableField("")
-    var year = ObservableField("")
     var errorFieldVisibility = ObservableField(View.GONE)
     var errorFieldString = ObservableField<String>()
     var progressVisibility = ObservableField(View.GONE)
+
+    init {
+        getProductsList()
+    }
 
     fun getProductsList() {
         val application = getApplication<Application>()
@@ -40,16 +40,9 @@ class ProductsFragmentViewModel @Inject constructor(
             return
         }
 
-        // Validate the inputs
-        validateSearchInput(application, maker.get()!!, model.get()!!, year.get()!!)?.let {
-            errorFieldVisibility.set(View.VISIBLE)
-            errorFieldString.set(it)
-            _productListResponse.value = emptyList()
-            return
-        }
         progressVisibility.set(View.VISIBLE)
         viewModelScope.launch {
-            when (val productListResponse = productsListUseCase.run(listOf(maker.get()!!, model.get()!!, year.get()!!))) {
+            when (val productListResponse = productsListUseCase.run()) {
                 is ResultWrapper.NetworkError -> {
                     errorFieldVisibility.set(View.VISIBLE)
                     errorFieldString.set(application.getString(R.string.error_zero_record))
@@ -60,7 +53,12 @@ class ProductsFragmentViewModel @Inject constructor(
                 }
                 is ResultWrapper.Success -> {
                     errorFieldVisibility.set(View.GONE)
-                    _productListResponse.postValue(productListResponse.value.searchResults)
+                    if(productListResponse.value.isNullOrEmpty())
+                    {
+                        errorFieldVisibility.set(View.VISIBLE)
+                        errorFieldString.set(application.getString(R.string.error_zero_record))
+                    }else
+                        _productListResponse.postValue(productListResponse.value!!)
                 }
             }
         progressVisibility.set(View.GONE)

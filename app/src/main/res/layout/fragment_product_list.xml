@@ -16,52 +16,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/ed_txt_maker"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:hint="@string/maker"
-        android:text="@={viewModel.maker}"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/ed_txt_model"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_txt_maker"
-        android:hint="@string/model"
-        android:text="@={viewModel.model}"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/ed_txt_year"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_txt_model"
-        android:hint="@string/year"
-        android:text="@={viewModel.year}"
-        android:inputType="number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_search"
-        android:text="@string/search"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_txt_year"
-        android:onClickListener="@{()->viewModel.getProductsList()}"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
     <ProgressBar
-        app:layout_constraintTop_toBottomOf="@+id/btn_search"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="@{viewModel.progressVisibility}"/>
@@ -71,7 +30,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_search"
+        app:layout_constraintTop_toTopOf="parent"
         android:visibility="@{viewModel.errorFieldVisibility}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -80,8 +39,7 @@
         android:id="@+id/rcy_view_products_list"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_search"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="0dp"/>
 

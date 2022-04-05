@@ -3,7 +3,7 @@ package com.example.technical.challenge.data.repositories
 import com.example.technical.challenge.data.base.ResultWrapper
 import com.example.technical.challenge.data.base.SafeApiCaller
 import com.example.technical.challenge.data.network.NetworkService
-import com.example.technical.challenge.data.network.response.productlist.ProductListResponse
+import com.example.technical.challenge.data.network.response.productlist.SearchResults
 import com.example.technical.challenge.domain.ProductListingRepository
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
@@ -13,8 +13,8 @@ class DefaultProductListingRepository @Inject constructor(private val service: N
 // , Here we can inject DBService
 ): ProductListingRepository {
 
-    override suspend fun getProductList (make: String, model: String, year: String): ResultWrapper<ProductListResponse> =
+    override suspend fun getProductList (): ResultWrapper<List<SearchResults>> =
         apiCaller.safeApiCall(Dispatchers.IO) {
-            service.getProductList(make, model, year)
+            service.getProductList()
         }
 }
