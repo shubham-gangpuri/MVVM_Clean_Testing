@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.scheduleList.ScheduleActivity">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.technical.challenge.presentation.scheduleList.ScheduleSharedViewModel" />
+    </data>
+
+<ScrollView
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/left"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:src="@android:drawable/ic_media_previous"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="?android:textAppearanceMedium"
+        android:id="@+id/txt_date"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="16dp"
+        android:lineSpacingMultiplier="1.2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/right"
+            app:layout_constraintRight_toRightOf="parent"
+            android:src="@android:drawable/ic_media_next"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcy_view_remedy_list"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_date"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+</layout>

@@ -10,7 +10,7 @@ import androidx.test.filters.MediumTest
 import com.example.technical.challenge.R
 import com.example.technical.challenge.base.getOrAwaitValue
 import com.example.technical.challenge.base.launchFragmentInHiltContainer
-import com.example.technical.challenge.domain.ProductsListUseCase
+import com.example.technical.challenge.domain.usecases.product.ProductsListUseCase
 import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -40,7 +40,8 @@ class ProductsListFragmentTest{
 
     @Test
     fun clickSearch_ProductListResponseLiveDataGetsNotified(){
-        val testViewModel = ProductsFragmentViewModel(ApplicationProvider.getApplicationContext(), mock(ProductsListUseCase::class.java))
+        val testViewModel = ProductsFragmentViewModel(ApplicationProvider.getApplicationContext(), mock(
+            ProductsListUseCase::class.java))
         launchFragmentInHiltContainer<ProductsListFragment> {
             this.viewModel =  testViewModel
         }

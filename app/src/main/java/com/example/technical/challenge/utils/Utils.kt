@@ -7,6 +7,8 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun closeKeyboard(view: View?) {
     view?.let {
@@ -43,4 +45,24 @@ fun hasInternetConnection(application: Application): Boolean {
         }
     }
     return false
+}
+
+fun getDateTime(s: Long): String? {
+    return try {
+        val sdf = SimpleDateFormat("dd/MM/yyyy")
+        val netDate = Date(s * 1000)
+        sdf.format(netDate)
+    } catch (e: Exception) {
+        e.toString()
+    }
+}
+
+fun getTimeAMPM(s: Long): String? {
+    return try {
+        val sdf = SimpleDateFormat("hh.mm aa")
+        val netDate = Date(s * 1000)
+        sdf.format(netDate)
+    } catch (e: Exception) {
+        e.toString()
+    }
 }

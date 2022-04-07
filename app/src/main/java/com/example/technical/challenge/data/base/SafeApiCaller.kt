@@ -1,8 +1,7 @@
 package com.example.technical.challenge.data.base
 
 import com.squareup.moshi.Moshi
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject

@@ -4,7 +4,7 @@ import com.example.technical.challenge.data.base.ResultWrapper
 import com.example.technical.challenge.data.base.SafeApiCaller
 import com.example.technical.challenge.data.network.NetworkService
 import com.example.technical.challenge.data.network.response.productlist.ProductListResponse
-import com.example.technical.challenge.domain.ProductListingRepository
+import com.example.technical.challenge.domain.reprositories.ProductListingRepository
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 

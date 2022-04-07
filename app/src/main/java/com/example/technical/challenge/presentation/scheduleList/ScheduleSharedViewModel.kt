@@ -1,4 +1,4 @@
-package com.example.technical.challenge.presentation.productsList
+package com.example.technical.challenge.presentation.scheduleList
 
 import android.app.Application
 import android.view.View
@@ -9,31 +9,32 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.technical.challenge.R
 import com.example.technical.challenge.data.base.ResultWrapper
-import com.example.technical.challenge.data.network.response.productlist.SearchResults
-import com.example.technical.challenge.domain.usecases.product.ProductsListUseCase
+import com.example.technical.challenge.domain.model.ScheduleModel
+import com.example.technical.challenge.domain.usecases.schedule.ScheduleListUseCase
 import com.example.technical.challenge.utils.hasInternetConnection
-import com.example.technical.challenge.utils.validateSearchInput
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ProductsFragmentViewModel @Inject constructor(
+class ScheduleSharedViewModel @Inject constructor(
     application: Application,
-    private val productsListUseCase: ProductsListUseCase
+    private val scheduleListUseCase: ScheduleListUseCase
 ) : AndroidViewModel(application){
 
-    private var _productListResponse = MutableLiveData<List<SearchResults>>()
-    val productListResponse: LiveData<List<SearchResults>> = _productListResponse
+    private var _scheduleListResponse = MutableLiveData<Map<String?, List<ScheduleModel?>>?>()
+    val scheduleListResponse: LiveData<Map<String?, List<ScheduleModel?>>?> = _scheduleListResponse
 
-    var maker = ObservableField("")
-    var model = ObservableField("")
-    var year = ObservableField("")
     var errorFieldVisibility = ObservableField(View.GONE)
     var errorFieldString = ObservableField<String>()
     var progressVisibility = ObservableField(View.GONE)
+    var isChanged: MutableLiveData<Int> = MutableLiveData(0)
 
-    fun getProductsList() {
+    init {
+        getScheduleList()
+    }
+
+    private fun getScheduleList() {
         val application = getApplication<Application>()
         if(!hasInternetConnection(application)) {
             errorFieldVisibility.set(View.VISIBLE)
@@ -41,16 +42,9 @@ class ProductsFragmentViewModel @Inject constructor(
             return
         }
 
-        // Validate the inputs
-        validateSearchInput(application, maker.get()!!, model.get()!!, year.get()!!)?.let {
-            errorFieldVisibility.set(View.VISIBLE)
-            errorFieldString.set(it)
-            _productListResponse.value = emptyList()
-            return
-        }
         progressVisibility.set(View.VISIBLE)
         viewModelScope.launch {
-            when (val productListResponse = productsListUseCase.run(listOf(maker.get()!!, model.get()!!, year.get()!!))) {
+            when (val scheduleMap = scheduleListUseCase.run()) {
                 is ResultWrapper.NetworkError -> {
                     errorFieldVisibility.set(View.VISIBLE)
                     errorFieldString.set(application.getString(R.string.error_zero_record))
@@ -61,7 +55,7 @@ class ProductsFragmentViewModel @Inject constructor(
                 }
                 is ResultWrapper.Success -> {
                     errorFieldVisibility.set(View.GONE)
-                    _productListResponse.postValue(productListResponse.value.searchResults)
+                    _scheduleListResponse.value = scheduleMap.value
                 }
             }
         progressVisibility.set(View.GONE)

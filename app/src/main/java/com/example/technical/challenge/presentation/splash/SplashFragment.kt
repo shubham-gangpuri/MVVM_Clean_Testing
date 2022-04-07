@@ -1,5 +1,6 @@
 package com.example.technical.challenge.presentation.splash
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.example.technical.challenge.R
 import com.example.technical.challenge.databinding.FragmentSplashBinding
+import com.example.technical.challenge.presentation.scheduleList.ScheduleActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -32,7 +33,8 @@ class SplashFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.hide()
         lifecycleScope.launch {
             delay(2000)
-            findNavController().navigate(R.id.action_splash_to_products_list)
+            startActivity(Intent(requireActivity(), ScheduleActivity::class.java))
+            requireActivity().finish()
         }
     }
 

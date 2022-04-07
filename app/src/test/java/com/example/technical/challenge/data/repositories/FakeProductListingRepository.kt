@@ -2,7 +2,7 @@ package com.example.technical.challenge.data.repositories
 
 import com.example.technical.challenge.data.base.ResultWrapper
 import com.example.technical.challenge.data.network.response.productlist.ProductListResponse
-import com.example.technical.challenge.domain.ProductListingRepository
+import com.example.technical.challenge.domain.reprositories.ProductListingRepository
 
 class FakeProductListingRepository : ProductListingRepository {
 

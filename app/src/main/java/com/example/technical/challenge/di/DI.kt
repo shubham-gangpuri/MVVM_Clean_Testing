@@ -2,9 +2,13 @@ package com.example.technical.challenge.di
 
 import com.example.technical.challenge.data.network.NetworkService
 import com.example.technical.challenge.data.repositories.DefaultProductListingRepository
-import com.example.technical.challenge.domain.ProductListingRepository
-import com.example.technical.challenge.domain.ProductsListUseCase
-import com.example.technical.challenge.domain.ProductsListUseCaseImp
+import com.example.technical.challenge.data.repositories.DefaultScheduleListingRepository
+import com.example.technical.challenge.domain.reprositories.ProductListingRepository
+import com.example.technical.challenge.domain.reprositories.ScheduleListingRepository
+import com.example.technical.challenge.domain.usecases.product.ProductsListUseCase
+import com.example.technical.challenge.domain.usecases.product.ProductsListUseCaseImp
+import com.example.technical.challenge.domain.usecases.schedule.ScheduleListUseCaseImp
+import com.example.technical.challenge.domain.usecases.schedule.ScheduleListUseCase
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.squareup.moshi.Moshi
@@ -69,6 +73,14 @@ class DI {
         = defaultProductListingRepository
 
     @Singleton
+    @Provides
+    fun provideScheduleListingRepository(defaultScheduleListingRepository: DefaultScheduleListingRepository) : ScheduleListingRepository
+            = defaultScheduleListingRepository
+
+    @Provides
+    fun provideScheduleListUseCase(scheduleListUseCaseImp: ScheduleListUseCaseImp) : ScheduleListUseCase
+            = scheduleListUseCaseImp
+
     @Provides
     fun provideProductsListUseCase(productsListUseCaseImp: ProductsListUseCaseImp) : ProductsListUseCase
             = productsListUseCaseImp

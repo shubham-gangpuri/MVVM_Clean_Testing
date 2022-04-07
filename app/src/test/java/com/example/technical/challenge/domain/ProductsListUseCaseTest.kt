@@ -3,6 +3,9 @@ package com.example.technical.challenge.domain
 import com.example.technical.challenge.data.base.ResultWrapper
 import com.example.technical.challenge.data.network.response.productlist.ProductListResponse
 import com.example.technical.challenge.data.repositories.FakeProductListingRepository
+import com.example.technical.challenge.domain.reprositories.ProductListingRepository
+import com.example.technical.challenge.domain.usecases.product.ProductsListUseCase
+import com.example.technical.challenge.domain.usecases.product.ProductsListUseCaseImp
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
