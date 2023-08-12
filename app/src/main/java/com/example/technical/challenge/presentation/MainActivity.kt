@@ -12,8 +12,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        findNavController(R.id.fragmentContainerView).addOnDestinationChangedListener{ controller, destination, arguments ->
-            title =  getString(R.string.app_name)
+        findNavController(R.id.fragmentContainerView).addOnDestinationChangedListener {
+                controller, destination, arguments -> title =  getString(R.string.app_name)
         }
     }
 }
